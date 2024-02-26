@@ -9,11 +9,20 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.viewbinding.ViewBinding;
 
 import com.sharipov.shoppingapp.R;
+import com.sharipov.shoppingapp.remote.MainApi;
+import com.sharipov.shoppingapp.util.PreferenceManger;
+
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public abstract class BaseActivity<V extends ViewBinding> extends AppCompatActivity {
     protected V binding;
 
     protected abstract V inflateViewBinding(LayoutInflater inflater);
+
+    public PreferenceManger preferenceManger;
+
+    public MainApi mainApi;
 
 
     @Override
@@ -22,6 +31,15 @@ public abstract class BaseActivity<V extends ViewBinding> extends AppCompatActiv
         binding = inflateViewBinding(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        preferenceManger = PreferenceManger.getInstance(getApplicationContext());
+
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://api.annyong.store")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        mainApi = retrofit.create(MainApi.class);
 //        Toolbar toolbar = (binding.getRoot().findViewById(R.id.toolbar));
 //        setSupportActionBar(toolbar);
 //

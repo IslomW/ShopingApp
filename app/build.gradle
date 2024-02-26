@@ -18,6 +18,7 @@ android {
 
     buildFeatures{
         viewBinding true
+        buildConfig true
     }
 
     buildTypes {
@@ -38,6 +39,18 @@ dependencies {
     implementation 'com.google.android.material:material:1.11.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
 
+    //retrofit
+    implementation 'com.squareup.retrofit2:retrofit:2.7.2'
+    implementation 'com.squareup.retrofit2:converter-gson:2.7.2'
+
+    //OkHttp
+    implementation 'com.squareup.okhttp3:okhttp:4.10.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.10.0'
+
+    //glide
+    implementation 'com.github.bumptech.glide:glide:4.14.2'
+    // Skip this if you don't want to use integration libraries or configure Glide.
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.14.2'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'

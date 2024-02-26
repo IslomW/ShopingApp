@@ -9,7 +9,6 @@ import androidx.annotation.Nullable;
 
 import com.sharipov.shoppingapp.base.BaseActivity;
 import com.sharipov.shoppingapp.databinding.ActivitySplashBinding;
-import com.sharipov.shoppingapp.login_pages.LoginActivity;
 
 public class SplashActivity extends BaseActivity<ActivitySplashBinding> {
     @Override
