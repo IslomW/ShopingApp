@@ -27,7 +27,7 @@ public class SplashActivity extends BaseActivity<ActivitySplashBinding> {
                 if (isLoggedIn){
                     startActivity(new Intent(SplashActivity.this, MainActivity.class));
                 }else {
-                    startActivity(new Intent(SplashActivity.this, LoginActivity.class));
+                    startActivity(new Intent(SplashActivity.this, MainActivity.class));
                 }
             }
         }, 3000);

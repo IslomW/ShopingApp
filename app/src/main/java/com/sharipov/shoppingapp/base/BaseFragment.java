@@ -14,7 +14,16 @@ public abstract class BaseFragment<V extends ViewBinding> extends Fragment {
 
     protected V binding;
 
+    protected BaseActivity parent;
+
     protected abstract V inflateViewBinding(LayoutInflater inflater, ViewGroup parent, boolean toAttach);
+
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        parent = (BaseActivity) getActivity();
+    }
 
     @Nullable
     @Override

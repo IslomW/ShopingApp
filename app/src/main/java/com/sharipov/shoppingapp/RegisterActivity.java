@@ -16,6 +16,7 @@ import androidx.annotation.Nullable;
 import com.sharipov.shoppingapp.base.BaseActivity;
 import com.sharipov.shoppingapp.base.RequestCallback;
 import com.sharipov.shoppingapp.databinding.ActivitySignupBinding;
+import com.sharipov.shoppingapp.dialog.MyDialogs;
 import com.sharipov.shoppingapp.model.User;
 
 import retrofit2.Call;
@@ -88,7 +89,8 @@ public class RegisterActivity extends BaseActivity<ActivitySignupBinding> {
 
                         @Override
                         protected void onResponseFailed(Call<User> call, Throwable t) {
-                            Log.e("ERROR", t.getLocalizedMessage());
+//                            Log.e("ERROR", t.getLocalizedMessage());
+                            MyDialogs.showNoticeDialog(getFragmentManager(), "Username is already taken");
                         }
                     });
 

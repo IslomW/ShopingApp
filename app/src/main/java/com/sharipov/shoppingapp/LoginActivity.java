@@ -12,6 +12,8 @@ import androidx.annotation.Nullable;
 import com.sharipov.shoppingapp.base.BaseActivity;
 import com.sharipov.shoppingapp.base.RequestCallback;
 import com.sharipov.shoppingapp.databinding.ActivityLoginBinding;
+import com.sharipov.shoppingapp.dialog.MyDialogs;
+import com.sharipov.shoppingapp.dialog.NoticeDialog;
 import com.sharipov.shoppingapp.forgot_password.ForgotPasswordActivity;
 import com.sharipov.shoppingapp.model.User;
 
@@ -47,7 +49,7 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding> {
 
                     @Override
                     protected void onResponseFailed(Call<User> call, Throwable t) {
-
+                        MyDialogs.showNoticeDialog(getFragmentManager(), "Username or Password is incorrect");
                     }
                 });
 
