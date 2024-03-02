@@ -1,6 +1,7 @@
 package com.sharipov.shoppingapp.remote;
 
 import com.sharipov.shoppingapp.model.Banner;
+import com.sharipov.shoppingapp.model.Product;
 import com.sharipov.shoppingapp.model.User;
 
 import java.lang.reflect.Array;
@@ -9,6 +10,7 @@ import java.util.ArrayList;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.POST;
 
 public interface MainApi {
@@ -25,6 +27,13 @@ public interface MainApi {
 //banner
     @GET("/v1/banner/")
     Call<ArrayList<Banner>> getBanners();
+
+
+
+    //Product
+    @GET("/v1/product/")
+    Call<ArrayList<Product>> getProducts(@Header("Authorization") String barerToken);
+
 
 
 }

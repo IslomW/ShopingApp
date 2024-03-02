@@ -36,7 +36,6 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding> {
             public void onClick(View view) {
 
                 String email = binding.editTextEmail.getText().toString();
-
                 String password = binding.editTextPassword.getText().toString();
                 User user = new User(email, password);
                 Call<User> call = mainApi.login(user);
@@ -44,6 +43,15 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding> {
                 call.enqueue(new RequestCallback<User>() {
                     @Override
                     protected void onResponseSuccess(Call<User> call, Response<User> response) {
+                        User loggedInUser = response.body();
+
+                        preferenceManger.setValue("isLoggedIn", true);
+//                        preferenceManger.setValue("user", loggedInUser);
+                        preferenceManger.setValue("access_token", loggedInUser.getAccessToken());
+                        preferenceManger.setValue("email", email);
+                        preferenceManger.setValue("password", password);
+
+
                         startActivity(new Intent(LoginActivity.this, MainActivity.class));
                     }
 
@@ -55,6 +63,7 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding> {
 
             }
         });
+
 
         binding.editTextEmail.addTextChangedListener(new TextWatcher() {
             @Override
@@ -73,7 +82,7 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding> {
                 boolean isEmailValid = isEmailValid(email);
                 if (isEmailValid) {
                     binding.emailField.setEndIconDrawable(R.drawable.ic_check);
-                }else {
+                } else {
                     binding.emailField.setEndIconDrawable(null);
                 }
             }
@@ -92,7 +101,7 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding> {
 
     }
 
-    private boolean isEmailValid(String email){
+    private boolean isEmailValid(String email) {
         boolean isEmailValid = true;
 
         if (!email.contains("@"))
@@ -102,7 +111,7 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding> {
         if (!emailTail.contains("."))
             return false;
 
-        if (emailTail.indexOf('.') == (emailTail.indexOf("@")+1))
+        if (emailTail.indexOf('.') == (emailTail.indexOf("@") + 1))
             return false;
 
         if (email.lastIndexOf('.') == (email.length() - 1))

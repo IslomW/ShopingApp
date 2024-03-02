@@ -30,27 +30,11 @@ public abstract class BaseActivity<V extends ViewBinding> extends AppCompatActiv
         super.onCreate(savedInstanceState);
         binding = inflateViewBinding(getLayoutInflater());
         setContentView(binding.getRoot());
-
+        mainApi = ApiService.provideApi(MainApi.class, this);
         preferenceManger = PreferenceManger.getInstance(getApplicationContext());
 
 
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://api.annyong.store")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
 
-        mainApi = retrofit.create(MainApi.class);
-//        Toolbar toolbar = (binding.getRoot().findViewById(R.id.toolbar));
-//        setSupportActionBar(toolbar);
-//
-//        if (getSupportActionBar() != null){
-//            getSupportActionBar().setDisplayHomeAsUpEnabled(hasBackButton());
-//
-//            if (hasBackButton()){
-//                if (backButtonDrawable() != 0)
-//                    getSupportActionBar().setHomeAsUpIndicator(backButtonDrawable());
-//            }
-//        }
 
 
 

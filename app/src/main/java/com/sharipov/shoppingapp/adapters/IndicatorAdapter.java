@@ -8,13 +8,15 @@ import androidx.annotation.NonNull;
 import com.sharipov.shoppingapp.base.BaseListAdapter;
 import com.sharipov.shoppingapp.base.BaseViewHolder;
 import com.sharipov.shoppingapp.databinding.ItemIndecatorBinding;
-import com.sharipov.shoppingapp.model.Banner;
 
-import java.util.ArrayList;
-import java.util.Iterator;
 
 public class IndicatorAdapter extends BaseListAdapter {
 
+    private int selectedPosition = 0;
+
+    public void setSelectedPosition(int selectedPosition) {
+        this.selectedPosition = selectedPosition;
+    }
 
     private int bannerListSize;
 
@@ -47,7 +49,7 @@ public class IndicatorAdapter extends BaseListAdapter {
 
         @Override
         protected void onBind(int position) {
-
+            binding.dotImageView.setSelected(selectedPosition == position);
         }
     }
 }

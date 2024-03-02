@@ -34,7 +34,7 @@ public class PreferenceManger implements PreferenceHelper {
         } else if (value.getClass().equals(Boolean.class)) {
             sharedPreferences.edit().putBoolean(key, (Boolean) value).apply();
         } else if (value.getClass().equals(User.class)) {
-            String json = new Gson().toJson((User) value);
+            String json = new Gson().toJson(value);
             setValue(key, value);
         }
     }

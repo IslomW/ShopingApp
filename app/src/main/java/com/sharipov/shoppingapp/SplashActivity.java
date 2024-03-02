@@ -19,15 +19,15 @@ public class SplashActivity extends BaseActivity<ActivitySplashBinding> {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        boolean isLoggedIn = false;
 
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
+                boolean isLoggedIn = (boolean) preferenceManger.getValue(Boolean.class, "isLoggedIn", false);
                 if (isLoggedIn){
                     startActivity(new Intent(SplashActivity.this, MainActivity.class));
                 }else {
-                    startActivity(new Intent(SplashActivity.this, MainActivity.class));
+                    startActivity(new Intent(SplashActivity.this, LoginActivity.class));
                 }
             }
         }, 3000);
