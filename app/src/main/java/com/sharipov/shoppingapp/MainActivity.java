@@ -38,6 +38,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding>{
         super.onCreate(savedInstanceState);
 
         currentTab = Tab.HOME;
+        onNavigationTabSelected(Tab.HOME);
 
         binding.nav.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
@@ -50,7 +51,6 @@ public class MainActivity extends BaseActivity<ActivityMainBinding>{
                     onNavigationTabSelected(Tab.CART);
                 else if (item.getItemId() == R.id.nav_profile)
                     onNavigationTabSelected(Tab.PROFILE);
-
                 return true;
             }
         });

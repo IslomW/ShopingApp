@@ -19,11 +19,13 @@ public class Product implements Serializable {
     private String madeIn;
     @SerializedName("brand")
     private String brand;
+//    @SerializedName("image")
+//    private String imageUrl;
 
     public Product() {
     }
 
-    public Product(String id, String title, String description, String currentPrice, String orginalPrice, String madeIn, String brand) {
+    public Product(String id, String title, String description, String currentPrice, String orginalPrice, String madeIn, String brand, String imageUrl) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -31,7 +33,16 @@ public class Product implements Serializable {
         this.orginalPrice = orginalPrice;
         this.madeIn = madeIn;
         this.brand = brand;
+//        this.imageUrl = imageUrl;
     }
+
+//    public String getImageUrl() {
+//        return imageUrl;
+//    }
+//
+//    public void setImageUrl(String imageUrl) {
+//        this.imageUrl = imageUrl;
+//    }
 
     public String getId() {
         return id;

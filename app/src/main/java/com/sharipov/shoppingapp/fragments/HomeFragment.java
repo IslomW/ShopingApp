@@ -1,17 +1,21 @@
 package com.sharipov.shoppingapp.fragments;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.sharipov.shoppingapp.adapters.BannerPagerAdapter;
 import com.sharipov.shoppingapp.adapters.IndicatorAdapter;
+import com.sharipov.shoppingapp.adapters.ProductListAdapter;
 import com.sharipov.shoppingapp.base.BaseFragment;
 import com.sharipov.shoppingapp.base.RequestCallback;
 import com.sharipov.shoppingapp.databinding.FragmentHomeBinding;
@@ -28,7 +32,9 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding> {
     private ArrayList<Banner> bannerArrayList;
     private BannerPagerAdapter bannerPagerAdapter;
 
-    private String baererToken;
+    private ArrayList<Product> productArrayList;
+    private ProductListAdapter productListAdapter;
+
     private IndicatorAdapter indicatorAdapter;
 
 
@@ -40,18 +46,22 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding> {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        baererToken = "fdsfsdsfddf";
         bannerArrayList = new ArrayList<>();
         bannerPagerAdapter = new BannerPagerAdapter(getActivity(), bannerArrayList);
         indicatorAdapter = new IndicatorAdapter(bannerArrayList.size());
-        loadProducts();
+
+        productArrayList = new ArrayList<>();
+        productListAdapter = new ProductListAdapter(productArrayList);
+
+
     }
 
 
     @Override
     public void onStart() {
         super.onStart();
+
+        loadProducts();
         loadBanners();
     }
 
@@ -63,6 +73,9 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding> {
         binding.indicatorRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
         binding.indicatorRecyclerView.setAdapter(indicatorAdapter);
 
+        binding.recyclerViewProduct.setLayoutManager(new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL));
+        binding.recyclerViewProduct.setAdapter(productListAdapter);
+
 
         binding.viewPagerBanner.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
             @Override
@@ -72,6 +85,8 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding> {
                 indicatorAdapter.notifyDataSetChanged();
             }
         });
+
+
     }
 
 
@@ -96,18 +111,21 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding> {
 
 
     private void loadProducts(){
-        Call<ArrayList<Product>> call = parent.mainApi.getProducts(baererToken);
+       Call<ArrayList<Product>> call = parent.mainApi.getPopularProduct();
+       call.enqueue(new RequestCallback<ArrayList<Product>>() {
+           @Override
+           protected void onResponseSuccess(Call<ArrayList<Product>> call, Response<ArrayList<Product>> response) {
+               productArrayList.addAll(response.body());
+               productListAdapter.notifyDataSetChanged();
 
-        call.enqueue(new RequestCallback<ArrayList<Product>>() {
-            @Override
-            protected void onResponseSuccess(Call<ArrayList<Product>> call, Response<ArrayList<Product>> response) {
+               Log.d("PRODUCT", productArrayList.toString());
+           }
 
-            }
+           @Override
+           protected void onResponseFailed(Call<ArrayList<Product>> call, Throwable t) {
 
-            @Override
-            protected void onResponseFailed(Call<ArrayList<Product>> call, Throwable t) {
-
-            }
-        });
+               Log.e("ERROR", t.getLocalizedMessage());
+           }
+       });
     }
 }
