@@ -32,21 +32,17 @@ public interface MainApi {
     @GET("/v1/banner/")
     Call<ArrayList<Banner>> getBanners();
 
-     //Classification
+    //Classification
     @GET("/v1/classification")
     Call<ArrayList<Classification>> getClassification();
 
-    //Product
-
+    //Products
     //popular
     @GET("/v1/popular/")
     Call<ArrayList<Product>> getPopularProduct();
 
     @GET("/v1/subproduct/{id}/products/")
     Call<ArrayList<Product>> getProductsBySubProduct(@Path("id") int subProductId);
-
-
-
 
 
     //Category

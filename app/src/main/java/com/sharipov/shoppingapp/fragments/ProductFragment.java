@@ -1,5 +1,6 @@
 package com.sharipov.shoppingapp.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.sharipov.shoppingapp.activities.ProductListActivity;
 import com.sharipov.shoppingapp.adapters.CategoryListAdapter;
 import com.sharipov.shoppingapp.base.BaseFragment;
 import com.sharipov.shoppingapp.base.RequestCallback;
@@ -57,6 +59,9 @@ public class ProductFragment extends BaseFragment<FragmentProductBinding> {
                     loadSubProducts(itemId);
                 }else if (type.equals("SUBPRODUCT")){
 
+                    Intent intent  = new Intent(getContext(), ProductListActivity.class);
+                    intent.putExtra("subProduct", itemId);
+                    startActivity(intent);
 
                     // move to Product List. Intent to New Activity.
                 }

@@ -31,6 +31,7 @@
         <activity android:name=".RegisterActivity"/>
         <activity android:name=".forgot_password.ForgotPasswordActivity"/>
         <activity android:name=".AddressActivity"/>
+        <activity android:name=".activities.ProductListActivity"/>
 
 
     </application>

@@ -3,6 +3,7 @@ package com.sharipov.shoppingapp.model;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
+import java.text.DecimalFormat;
 
 public class Product implements Serializable {
     @SerializedName("id")
@@ -47,6 +48,7 @@ public class Product implements Serializable {
 //    }
 
 
+
     public Image getImage() {
         return image;
     }
@@ -82,6 +84,11 @@ public class Product implements Serializable {
     public String getCurrentPrice() {
         return currentPrice;
     }
+    public String getPriceCurrentAsString(){
+        DecimalFormat format = new DecimalFormat("###,###,###W");
+        String price = format.format(currentPrice);
+        return price;
+    }
 
     public void setCurrentPrice(String currentPrice) {
         this.currentPrice = currentPrice;
@@ -89,6 +96,11 @@ public class Product implements Serializable {
 
     public String getOrginalPrice() {
         return orginalPrice;
+    }
+    public String getOrginalPriceAsString(){
+        DecimalFormat format = new DecimalFormat("###,###,###W");
+        String price = format.format(orginalPrice);
+        return price;
     }
 
     public void setOrginalPrice(String orginalPrice) {

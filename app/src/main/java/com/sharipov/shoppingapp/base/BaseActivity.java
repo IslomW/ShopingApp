@@ -2,6 +2,7 @@ package com.sharipov.shoppingapp.base;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.View;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,6 +21,7 @@ public abstract class BaseActivity<V extends ViewBinding> extends AppCompatActiv
 
     protected abstract V inflateViewBinding(LayoutInflater inflater);
 
+    private Toolbar toolbar;
     public PreferenceManger preferenceManger;
 
     public MainApi mainApi;
@@ -32,6 +34,25 @@ public abstract class BaseActivity<V extends ViewBinding> extends AppCompatActiv
         setContentView(binding.getRoot());
         mainApi = ApiService.provideApi(MainApi.class, this);
         preferenceManger = PreferenceManger.getInstance(getApplicationContext());
+
+        toolbar = binding.getRoot().findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        if (getSupportActionBar() != null){
+            getSupportActionBar().setDisplayShowTitleEnabled(false);
+        }
+
+        if (hasBackButton()){
+            if (getSupportActionBar() != null){
+                getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+                toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        finish();
+                    }
+                });
+            }
+        }
 
 
 

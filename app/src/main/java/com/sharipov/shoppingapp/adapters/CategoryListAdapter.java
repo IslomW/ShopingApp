@@ -2,6 +2,7 @@ package com.sharipov.shoppingapp.adapters;
 
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -131,7 +132,6 @@ public class CategoryListAdapter extends BaseListAdapter {
                 binding.textViewCategoryNext.setText(category.getTitle());
 
             } else if (type.equals("SUBPRODUCT")) {
-
                 SubProduct subProduct = subProductArrayList.get(position);
                 binding.textViewCategoryNext.setText(subProduct.getTitle());
 
