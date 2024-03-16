@@ -4,6 +4,8 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+
+import com.bumptech.glide.Glide;
 import com.sharipov.shoppingapp.base.BaseListAdapter;
 import com.sharipov.shoppingapp.base.BaseViewHolder;
 import com.sharipov.shoppingapp.databinding.ItemProductBinding;
@@ -46,7 +48,7 @@ public class ProductListAdapter extends BaseListAdapter {
             binding.textViewPrice.setText(product.getCurrentPrice());
             binding.textViewDiscount.setText(product.getOrginalPrice());
 
-//            Glide.with(binding.imageViewProduct).load(product.getImageUrl()).into(binding.imageViewProduct);
+          Glide.with(binding.imageViewProduct).load(product.getImage().getImage()).into(binding.imageViewProduct);
         }
     }
 }

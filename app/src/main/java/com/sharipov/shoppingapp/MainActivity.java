@@ -80,7 +80,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding>{
             case PRODUCTS:
                 if (productFragment == null){
                     productFragment = new ProductFragment();
-                    getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, productFragment, "PRODUCT").commit();
+                    getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, productFragment, "PRODUCTS").commit();
                 }else {
                     getSupportFragmentManager().beginTransaction().show(productFragment).commit();
                 }

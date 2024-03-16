@@ -36,9 +36,16 @@ public interface MainApi {
     @GET("/v1/classification")
     Call<ArrayList<Classification>> getClassification();
 
-    //Popular Product
+    //Product
+
+    //popular
     @GET("/v1/popular/")
     Call<ArrayList<Product>> getPopularProduct();
+
+    @GET("/v1/subproduct/{id}/products/")
+    Call<ArrayList<Product>> getProductsBySubProduct(@Path("id") int subProductId);
+
+
 
 
 
