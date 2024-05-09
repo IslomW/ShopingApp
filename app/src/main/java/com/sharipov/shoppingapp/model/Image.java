@@ -49,6 +49,9 @@ public class Image implements Serializable {
     }
 
     public void setImage(String image) {
+        if (image == null){
+            this.image = "";
+        }
         this.image = image;
     }
 

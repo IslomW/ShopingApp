@@ -6,18 +6,14 @@ import android.view.LayoutInflater;
 
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.sharipov.shoppingapp.adapters.ProductListAdapter;
 import com.sharipov.shoppingapp.base.BaseActivity;
-import com.sharipov.shoppingapp.base.BaseListAdapter;
 import com.sharipov.shoppingapp.base.RequestCallback;
 import com.sharipov.shoppingapp.databinding.ActivityProductListBinding;
 import com.sharipov.shoppingapp.model.Product;
 
 import java.util.ArrayList;
-import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.Response;
@@ -40,9 +36,6 @@ public class ProductListActivity extends BaseActivity<ActivityProductListBinding
 
         binding.recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
         binding.recyclerView.setAdapter(productListAdapter);
-
-
-
         int subProduct = getIntent().getIntExtra("subProduct", 0);
 
         if (subProduct > 0){
@@ -70,7 +63,6 @@ public class ProductListActivity extends BaseActivity<ActivityProductListBinding
             @Override
             protected void onResponseSuccess(Call<ArrayList<Product>> call, Response<ArrayList<Product>> response) {
                 productArrayList.addAll(response.body());
-                Log.d("PRODUCT", productArrayList.toString());
 
                 productListAdapter.notifyDataSetChanged();
             }

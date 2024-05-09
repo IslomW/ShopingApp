@@ -3,7 +3,9 @@ package com.sharipov.shoppingapp.model;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
+import java.lang.reflect.Array;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 
 public class Product implements Serializable {
     @SerializedName("id")
@@ -24,6 +26,50 @@ public class Product implements Serializable {
     private Image image;
 //    @SerializedName("image")
 //    private String imageUrl;
+
+    @SerializedName("images")
+    private ArrayList<Image> images;
+
+    @SerializedName("color_options")
+    private ArrayList<ColorOption> colorOptions;
+
+    @SerializedName("size_options")
+    private ArrayList<SizeOption> sizeOptions;
+
+    @SerializedName("options")
+    private ArrayList<Option> optionArrayLists;
+
+    public ArrayList<Option> getOptionArrayLists() {
+        return optionArrayLists;
+    }
+
+    public void setOptionArrayLists(ArrayList<Option> optionArrayLists) {
+        this.optionArrayLists = optionArrayLists;
+    }
+
+    public ArrayList<Image> getImages() {
+        return images;
+    }
+
+    public void setImages(ArrayList<Image> images) {
+        this.images = images;
+    }
+
+    public ArrayList<ColorOption> getColorOptions() {
+        return colorOptions;
+    }
+
+    public void setColorOptions(ArrayList<ColorOption> colorOptions) {
+        this.colorOptions = colorOptions;
+    }
+
+    public ArrayList<SizeOption> getSizeOptions() {
+        return sizeOptions;
+    }
+
+    public void setSizeOptions(ArrayList<SizeOption> sizeOptions) {
+        this.sizeOptions = sizeOptions;
+    }
 
     public Product() {
     }

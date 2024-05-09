@@ -1,11 +1,14 @@
 package com.sharipov.shoppingapp.adapters;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 
 import com.bumptech.glide.Glide;
+import com.sharipov.shoppingapp.activities.ProductDetailsActivity;
 import com.sharipov.shoppingapp.base.BaseListAdapter;
 import com.sharipov.shoppingapp.base.BaseViewHolder;
 import com.sharipov.shoppingapp.databinding.ItemProductBinding;
@@ -30,6 +33,20 @@ public class ProductListAdapter extends BaseListAdapter {
     }
 
     @Override
+    public void onBindViewHolder(@NonNull BaseViewHolder holder, int position) {
+        super.onBindViewHolder(holder, position);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(holder.itemView.getContext(), ProductDetailsActivity.class);
+                intent.putExtra("product_id", productArrayList.get(position).id);
+                holder.itemView.getContext().startActivity(intent);
+
+            }
+        });
+    }
+
+    @Override
     public int getItemCount() {
         return productArrayList.size();
     }
@@ -48,7 +65,10 @@ public class ProductListAdapter extends BaseListAdapter {
             binding.textViewPrice.setText(product.getCurrentPrice());
             binding.textViewDiscount.setText(product.getOrginalPrice());
 
-          Glide.with(binding.imageViewProduct).load(product.getImage().getImage()).into(binding.imageViewProduct);
+            if (product.getImage() != null){
+                Glide.with(binding.imageViewProduct).load(product.getImage().getImage()).into(binding.imageViewProduct);
+            }
+
         }
     }
 }

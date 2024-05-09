@@ -56,4 +56,15 @@ public interface MainApi {
     @GET("/v1/category/{id}/subproduct/")
     Call<ArrayList<SubProduct>> getSubProducts(@Path("id") int categoryId);
 
+    @GET("/v1/product/{id}")
+    Call<Product> getProductDetails(@Path("id") int productId);
+
+    //Cart
+
+
+    @POST("/v1/cart")
+    Call<CartResponse> addProductToCart(@Body CartRequest cartRequest);
+    @GET("/v1/cart")
+    Call<ArrayList<Cart>> getMyCart();
+
 }
