@@ -1,8 +1,13 @@
 package com.sharipov.shoppingapp.remote;
 
 import com.sharipov.shoppingapp.model.Banner;
+import com.sharipov.shoppingapp.model.Cart;
+import com.sharipov.shoppingapp.model.CartRequest;
+import com.sharipov.shoppingapp.model.CartResponse;
 import com.sharipov.shoppingapp.model.Category;
 import com.sharipov.shoppingapp.model.Classification;
+import com.sharipov.shoppingapp.model.Order;
+import com.sharipov.shoppingapp.model.OrderRequest;
 import com.sharipov.shoppingapp.model.Product;
 import com.sharipov.shoppingapp.model.SubProduct;
 import com.sharipov.shoppingapp.model.User;
@@ -62,9 +67,11 @@ public interface MainApi {
     //Cart
 
 
-    @POST("/v1/cart")
+    @POST("/v1/cart/")
     Call<CartResponse> addProductToCart(@Body CartRequest cartRequest);
-    @GET("/v1/cart")
+    @GET("/v1/cart/")
     Call<ArrayList<Cart>> getMyCart();
+    @POST("/v1/cart/order/")
+    Call<Order> orderCarts(@Body OrderRequest orderRequest);
 
 }

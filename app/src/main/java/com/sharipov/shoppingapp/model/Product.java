@@ -3,13 +3,12 @@ package com.sharipov.shoppingapp.model;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
-import java.lang.reflect.Array;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class Product implements Serializable {
     @SerializedName("id")
-    private String id;
+    private int id;
     @SerializedName("title")
     private String title;
     @SerializedName("description")
@@ -75,7 +74,7 @@ public class Product implements Serializable {
     }
 
     public Product(String id, String title, String description, String currentPrice, String orginalPrice, String madeIn, String brand, Image image) {
-        this.id = id;
+        this.id = Integer.parseInt(id);
         this.title = title;
         this.description = description;
         this.currentPrice = currentPrice;
@@ -103,12 +102,12 @@ public class Product implements Serializable {
         this.image = image;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
     public void setId(String id) {
-        this.id = id;
+        this.id = Integer.parseInt(id);
     }
 
     public String getTitle() {

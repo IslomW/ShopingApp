@@ -7,14 +7,14 @@ public class Option {
     @SerializedName("id")
     private int id;
     @SerializedName("color_option")
-    private String colorOption;
+    private ColorOption colorOption;
     @SerializedName("size_option")
-    private String sizeOption;
+    private SizeOption sizeOption;
 
     public Option() {
     }
 
-    public Option(int id, String colorOption, String sizeOption) {
+    public Option(int id, ColorOption colorOption, SizeOption sizeOption) {
         this.id = id;
         this.colorOption = colorOption;
         this.sizeOption = sizeOption;
@@ -28,19 +28,19 @@ public class Option {
         this.id = id;
     }
 
-    public String getColorOption() {
+    public ColorOption getColorOption() {
         return colorOption;
     }
 
-    public void setColorOption(String colorOption) {
+    public void setColorOption(ColorOption colorOption) {
         this.colorOption = colorOption;
     }
 
-    public String getSizeOption() {
+    public SizeOption getSizeOption() {
         return sizeOption;
     }
 
-    public void setSizeOption(String sizeOption) {
+    public void setSizeOption(SizeOption sizeOption) {
         this.sizeOption = sizeOption;
     }
 }
